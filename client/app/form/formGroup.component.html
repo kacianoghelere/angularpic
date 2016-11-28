@@ -1,0 +1,11 @@
+<div class="form-group" [ngClass]="{'has-error': (!campo.pristine && campo.invalid)}">
+    <ng-content></ng-content>
+    <div *ngIf="!campo.valid">
+        <span *ngIf="campo.errors.required" class="help-block text-danger">
+            Campo obrigatório
+        </span>
+        <span *ngIf="campo.errors.minlength" class="help-block text-danger">
+            Título deve ter no mínimo  caracteres
+        </span>
+    </div>
+</div>

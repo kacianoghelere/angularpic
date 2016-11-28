@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FotoComponent } from '../foto/foto.component';
-import {Http, Headers} from '@angular/http';
+import { Http, Headers } from '@angular/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     moduleId: module.id,
@@ -11,12 +12,24 @@ export class CadastroComponent {
 
     foto: FotoComponent = new FotoComponent();
     http: Http;
+    meuForm: FormGroup;
 
-    constructor(http: Http) {
+    constructor(http: Http, builder: FormBuilder) {
         this.http = http;
+        this.meuForm = builder.group({
+            titulo: ['', Validators.compose(
+                [Validators.required, Validators.minLength(4)]
+            )],
+            url: ['', Validators.required],
+            descricao: ['']
+        });
     }
 
-    cadastrar(event) {
+    /**
+     * Envia cadastro de nova foto
+     * @param {any} event Evento do Angular 
+     */
+    cadastrar(event): void {
         event.preventDefault();
         console.log(this.foto);
 
@@ -28,5 +41,10 @@ export class CadastroComponent {
                 this.foto = new FotoComponent();
                 console.log('Foto salva com sucesso');
             }, erro =>  console.log(erro));
+    }
+
+    verificar(field: string): boolean {
+        let controls = this.meuForm.controls;
+        return !controls[field].pristine && controls[field].invalid;
     }
 }
