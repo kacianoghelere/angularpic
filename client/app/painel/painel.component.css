@@ -1,0 +1,10 @@
+.efeito {
+    box-shadow: 2px 2px 15px;
+}
+.panel-body {
+    min-height: 300px;
+}
+
+.panel-body > .btn-block {
+    bottom: 0;
+}

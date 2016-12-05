@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { FotoComponent } from '../foto/foto.component';
-import { Http, Headers } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { FotoComponent } from '../foto/foto.component';
+import { FotoService, MensagemCadastro } from '../foto/foto.service';
 
 @Component({
     moduleId: module.id,
@@ -11,11 +13,30 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CadastroComponent {
 
     foto: FotoComponent = new FotoComponent();
-    http: Http;
+    service: FotoService;
     meuForm: FormGroup;
+    route: ActivatedRoute;
+    mensagem: string = '';
+    router: Router;
 
-    constructor(http: Http, builder: FormBuilder) {
-        this.http = http;
+    constructor(service: FotoService, builder: FormBuilder, 
+            route: ActivatedRoute, router: Router) {
+        this.router = router;
+        this.route = route;
+        this.service = service;
+
+        this.route.params.subscribe(params => {
+            let id = params['id'];
+
+            if (id) {
+                this.service.buscaPorId(id)
+                    .subscribe(
+                        (foto) => this.foto = foto,
+                        (erro) => console.log(erro)
+                    );
+            }            
+        });
+
         this.meuForm = builder.group({
             titulo: ['', Validators.compose(
                 [Validators.required, Validators.minLength(4)]
@@ -31,16 +52,12 @@ export class CadastroComponent {
      */
     cadastrar(event): void {
         event.preventDefault();
-        console.log(this.foto);
-
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        this.http
-            .post('v1/fotos', JSON.stringify(this.foto), {headers: headers})
-            .subscribe(() => {
+        this.service.cadastra(this.foto)
+            .subscribe((res: MensagemCadastro) => {
+                this.mensagem = res.mensagem;
                 this.foto = new FotoComponent();
-                console.log('Foto salva com sucesso');
-            }, erro =>  console.log(erro));
+                if(!res.inclusao) this.router.navigate(['']);
+            }, (erro) => console.log(erro));
     }
 
     verificar(field: string): boolean {

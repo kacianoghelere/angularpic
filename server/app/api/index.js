@@ -50,14 +50,13 @@ api.remove = function(req, res) {
 
     db.remove({ _id: req.params.fotoId }, {}, function (err, numRemoved) {
         if (err) return console.log(err);
-        console.log('removido com sucesso');
+        console.log('Removido com sucesso', req.params.fotoId);
         if(numRemoved) res.status(200).end();
         res.status(500).end();
     });
 };
 
 api.listaGrupos = function(req, res) {
-
     res.json([
         {
             _id: 1, 
@@ -70,9 +69,12 @@ api.listaGrupos = function(req, res) {
         { 
             _id: 3, 
             nome: 'animais'
+        }, 
+        { 
+            _id: 4, 
+            nome: 'objetos'
         }
     ]);
-        
 };
 
 

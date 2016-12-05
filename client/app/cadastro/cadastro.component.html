@@ -1,39 +1,43 @@
-<div class="container">
-    <div class="row">
-        <h1 class="text-center">{{foto.titulo}}</h1>
-        <form [formGroup]="meuForm" class="form-horizontal" (submit)="cadastrar($event)">
-            <div class="col-md-6">
-                <formGroup [campo]="meuForm.controls.url">
-                    <label class="control-label" for="titulo">Título</label>
-                    <input id="titulo" formControlName="titulo"
-                        [(ngModel)]="foto.titulo" class="form-control" autocomplete="off">
-                </formGroup>
+<div class="row">
+    <h1 class="text-center">{{foto.titulo}}</h1>
 
-                <formGroup [campo]="meuForm.controls.url">
-                    <label class="control-label" for="url">URL</label>
-                    <input id="url" formControlName="url" [(ngModel)]="foto.url"
-                        class="form-control" autocomplete="off">
-                </formGroup>
+    <p *ngIf="mensagem.length" class="alert alert-info">{{mensagem}}</p>
 
-                <div class="form-group">
-                    <label class="control-label" for="descricao">Descrição</label>
-                    <textarea id="descricao"
-                        formControlName="descricao"
-                        [(ngModel)]="foto.descricao"
-                        class="form-control"  autocomplete="off">
-                    </textarea>
-                </div>
+    <form [formGroup]="meuForm" class="form-horizontal"
+            (submit)="cadastrar($event)">
+        <div class="col-md-6">
+            <formGroup [campo]="meuForm.controls.url">
+                <label class="control-label" for="titulo">Título</label>
+                <input id="titulo" formControlName="titulo"
+                    [(ngModel)]="foto.titulo" 
+                    class="form-control" autocomplete="off">
+            </formGroup>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary" [disabled]="meuForm.invalid">
-                        <i class="glyphicon glyphicon-floppy-save"></i> Salvar
-                    </button>
-                    <a [routerLink]="['']" class="btn btn-default">Voltar</a>
-                </div>
+            <formGroup [campo]="meuForm.controls.url">
+                <label class="control-label" for="url">URL</label>
+                <input id="url" formControlName="url" [(ngModel)]="foto.url"
+                    class="form-control" autocomplete="off">
+            </formGroup>
+
+            <div class="form-group">
+                <label class="control-label" for="descricao">Descrição</label>
+                <textarea id="descricao"
+                    formControlName="descricao"
+                    [(ngModel)]="foto.descricao"
+                    class="form-control"  autocomplete="off">
+                </textarea>
             </div>
-            <div class="col-md-6">
-                <foto url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+
+            <div class="form-group">
+                <botao nome="Salvar" tipo="submit" estilo="btn-primary" 
+                        [desabilitado]="!meuForm.valid">
+                    <i class="glyphicon glyphicon-floppy-save"></i> Salvar
+                </botao>
+                <a [routerLink]="['']" class="btn btn-default">Voltar</a>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="col-md-6">
+            <foto url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+        </div>
+    </form>
 </div>
