@@ -7,7 +7,6 @@
   },
   "scripts": {
     "install": "cd server && npm install",
-    "postinstall": "cd client && npm install",
-    "start": "cd server && npm start"
+    "postinstall": "cd client && npm install"
   }
 }
