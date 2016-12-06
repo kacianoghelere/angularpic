@@ -6,6 +6,8 @@
     "node": "4.6.2"
   },
   "scripts": {
-    "heroku-postbuild": "cd server && npm install && npm start"
+    "install": "scripts/install.js",
+    "postinstall": "cd server && npm start",
+    "start": "cd client && npm start"
   }
 }
