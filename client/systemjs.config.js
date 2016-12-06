@@ -32,10 +32,7 @@
         main: 'main.js',
         defaultExtension: 'js'
       },
-      rxjs: {
-        main: 'bundles/Rx.js',
-        defaultExtension: 'js'
-      },
+      rxjs: { defaultExtension: false },
       'angular2-in-memory-web-api': {
         main: 'index.js',
         defaultExtension: 'js'
