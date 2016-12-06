@@ -17,7 +17,9 @@
         
         <script src="systemjs.config.js"></script>
         <script>
-            System.import('app').catch(function(err){ console.error(err); });
+            System.import('app').catch(function (err) {
+                console.error("Erro ao importar o modulo principal", err);
+            });
         </script>
     </head>
     <body>
