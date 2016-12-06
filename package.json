@@ -6,8 +6,8 @@
     "node": "4.6.2"
   },
   "scripts": {
-    "install": "cd server && npm install && cd ../client && npm install && cd ..",
-    "postinstall": "cd server && npm start",
-    "start": "cd client && npm start"
+    "install": "cd server && npm install",
+    "postinstall": "../client && npm install",
+    "start": "cd ../server && npm start"
   }
 }
