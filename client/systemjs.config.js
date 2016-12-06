@@ -4,6 +4,7 @@
  */
 (function (global) {
   System.config({
+    defaultJSExtensions: true,
     paths: {
       // paths serve as alias
       'npm:': 'node_modules/'
@@ -33,6 +34,9 @@
       },
       rxjs: {
         defaultExtension: 'js'
+      },
+      "@angular": {
+        defaultExtension: false
       },
       'angular2-in-memory-web-api': {
         main: './index.js',
