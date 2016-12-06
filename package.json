@@ -3,10 +3,9 @@
   "description": "A really cool app",
   "version": "1.0.0",
   "engines": {
-    "node": "4.6.2",
-    "npm": "2.15.11"
+    "node": "4.6.2"
   },
   "scripts": {
-    "heroku-postbuild": "cd server && npm start"
+    "heroku-postbuild": "cd server && npm install && npm start"
   }
 }
