@@ -30,7 +30,7 @@
     packages: {
       app: {
         main: 'main.js',
-        defaultExtension: 'js'
+        defaultExtension: false
       },
       rxjs: { defaultExtension: false },
       'angular2-in-memory-web-api': {
