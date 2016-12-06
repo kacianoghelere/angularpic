@@ -1,0 +1,9 @@
+
+{
+  "name": "angularpic",
+  "description": "A really cool app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "4.6.2"
+  }
+}
