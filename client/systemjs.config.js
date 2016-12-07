@@ -40,3 +40,7 @@
     }
   });
 })(this);
+
+System.import('app').catch(function (err) {
+  console.error("Erro ao importar o modulo principal", err);
+});
