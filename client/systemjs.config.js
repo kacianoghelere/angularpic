@@ -7,12 +7,12 @@
     defaultJSExtensions: true,
     paths: {
       // paths serve as alias
-      'npm:': 'node_modules/'
+      'npm:': './node_modules/'
     },
     // map tells the System loader where to look for things
     map: {
       // our app is within the app folder
-      app: 'app',
+      app: './app',
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -30,7 +30,7 @@
     packages: {
       app: {
         main: 'main.js',
-        defaultExtension: 'js' 
+        defaultExtension: 'js'
       },
       rxjs: { defaultExtension: 'js' },
       'angular2-in-memory-web-api': {
@@ -42,5 +42,5 @@
 })(this);
 
 System.import('app').catch(function (err) {
-  console.error("Erro ao importar o modulo principal", err);
+  console.log("Erro ao importar o modulo principal", err);
 });
